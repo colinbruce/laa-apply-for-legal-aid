@@ -1,5 +1,5 @@
-module LegalAidApplicationStateMachine # rubocop:disable Metrics/ModuleLength
-  extend ActiveSupport::Concern
+class LegalAidApplicationStateMachine
+
 
   included do # rubocop:disable Metrics/BlockLength
     include AASM

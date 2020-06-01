@@ -1,0 +1,10 @@
+class AddThingsTable < ActiveRecord::Migration[6.0]
+  def change
+    create_table :things do |t|
+      t.string :state_machine_klass
+      t.string :saved_state
+      t.string :name
+      t.timestamps
+    end
+  end
+end
