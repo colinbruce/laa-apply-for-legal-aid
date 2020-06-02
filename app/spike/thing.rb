@@ -1,20 +1,31 @@
 class Thing < ApplicationRecord
 
-  attr_reader :state_machine
+  attr_reader :state_machine_proxy
 
-  after_initialize :initialize_state_machine
+  delegate :provider_setup!,
+           :provider_entering_means!,
+           :citizen_entering_means!,
+           to: :state_machine_proxy
 
-  delegate :state, to: :state_machine
+  has_one :state_machine, class_name: 'BaseStateMachine'
 
-  def provider_setup!
-    @state_machine.provider_setup!
+  def state
+    state_machine_proxy.aasm_state
+  end
+
+  def state_machine_proxy
+    if state_machine.nil?
+      self.save!
+      create_state_machine(type: 'PassportedStateMachine')
+    end
+    state_machine
+  end
+
+  def switch_state_machines
+    save!
+    state_machine.update!(type: 'NonPassportedStateMachine')
+    reload
   end
 
 
-  def initialize_state_machine
-    self.state_machine_klass = 'PassportedStateMachine' unless self.state_machine_klass.present?
-    self.saved_state = 'initiated' unless self.saved_state.present?
-    @state_machine = state_machine_klass.constantize.new(self)
-    @state_machine.aasm_write_state self.saved_state.to_sym
-  end
 end

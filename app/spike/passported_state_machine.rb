@@ -1,20 +1,7 @@
-class PassportedStateMachine
-  include AASM
-
-  def initialize(parent)
-    @parent = parent
-    aasm_write_state @parent.saved_state.to_sym
-  end
-
-  def state
-    aasm_read_state
-  end
-
+class PassportedStateMachine < BaseStateMachine
 
 
   aasm do
-    after_all_transitions :save_state_in_parent!
-
     state :initiated, initial: true
     state :provider_setup
     state :provider_entering_means
@@ -38,9 +25,4 @@ class PassportedStateMachine
     end
   end
 
-  private
-
-  def save_state_in_parent!
-    @parent.saved_state = aasm.to_state
-  end
 end

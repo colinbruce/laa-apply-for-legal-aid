@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_093519) do
+ActiveRecord::Schema.define(version: 2020_06_01_143553) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -632,6 +632,12 @@ ActiveRecord::Schema.define(version: 2020_06_01_093519) do
     t.string "bank_transaction_filename", default: "db/sample_data/bank_transactions.csv"
   end
 
+  create_table "state_machine_proxies", force: :cascade do |t|
+    t.integer "thing_id"
+    t.string "type"
+    t.string "aasm_state"
+  end
+
   create_table "statement_of_cases", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "legal_aid_application_id", null: false
     t.text "statement"
@@ -643,8 +649,6 @@ ActiveRecord::Schema.define(version: 2020_06_01_093519) do
   end
 
   create_table "things", force: :cascade do |t|
-    t.string "state_machine_klass"
-    t.string "saved_state"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
