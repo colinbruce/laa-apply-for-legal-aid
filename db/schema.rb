@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_102815) do
+ActiveRecord::Schema.define(version: 2020_07_08_150939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -351,6 +351,11 @@ ActiveRecord::Schema.define(version: 2020_07_08_102815) do
     t.integer "difficulty"
   end
 
+  create_table "firm_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "firm_id"
+    t.uuid "role_id"
+  end
+
   create_table "firms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -537,6 +542,11 @@ ActiveRecord::Schema.define(version: 2020_07_08_102815) do
     t.uuid "default_service_level_id"
     t.index ["code"], name: "index_proceeding_types_on_code"
     t.index ["default_service_level_id"], name: "index_proceeding_types_on_default_service_level_id"
+  end
+
+  create_table "provider_roles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "provider_id"
+    t.uuid "role_id"
   end
 
   create_table "providers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
