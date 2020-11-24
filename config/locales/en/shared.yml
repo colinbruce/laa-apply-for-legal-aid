@@ -56,6 +56,8 @@ en:
           property_value: How much is your client's home worth?
           restrictions: Do any restrictions apply?
           savings_and_investments: Savings and investments
+          bank_accounts: Which bank accounts does your client have?
+          other_investments: Which types of savings or investments does your client have?
           savings_account: Savings account
           current_account: Current account
           shared_ownership: Does your client own their home with anyone else?
