@@ -18,6 +18,7 @@ development:
   reminder_to_submit_financial_information_client: e8052551-2afa-4b11-b3e3-578248d9b582
   reminder_to_submit_financial_information_provider: ec4f423d-498a-4828-ab66-c2453cb42ed3
   new_link_to_client: 5708ec04-c789-4f7e-8a15-ad7dd3f4f336
+  citizen_completed_application: 4c0ae9f1-4316-4e55-a823-39b8018fdf6f
 
 production:
   citizen_start_application: 7e5fb1a7-4b78-4a95-917e-c0bcb78a5fcc
@@ -29,3 +30,4 @@ production:
   reminder_to_submit_financial_information_client: 2a07ae35-670a-4753-a7cf-58843068b659
   reminder_to_submit_financial_information_provider: 9843f667-8b11-41c0-9c11-622fffc686ec
   new_link_to_client: b59f52f3-ad0b-45ed-9b2a-a33686f4278a
+  citizen_completed_application: 3b18efe5-7d09-4042-927c-7d1ae03fdd7e
